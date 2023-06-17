@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import axios from 'axios'
 
 import config from '../utils/config'
-import { IVehicle, Vehicle, TGenericVehicle } from '../types/index'
+import { IVehicle, Vehicle } from '../types/index'
 //import logger from '../utils/logger'
 
 let VehicleArray: IVehicle[] = []
@@ -21,7 +21,6 @@ const helloWorld = (_req: Request, res: Response) => {
 
 const indexPage = async (_req: Request, res: Response) => {
   const response = await axios.get(`${config.base_url}/hello`)
-  //logger.warn(response.data)
 
   res.render('index', { title: 'Zephyr', response: response.data })
 }
@@ -43,8 +42,6 @@ const addVehicle = async (req: Request, res: Response) => {
 
       VehicleArray.unshift({ ...car })
 
-      //logger.warn(VehicleArray)
-
       const newCar = VehicleArray.find((el) => el.model === model)
 
       if (newCar) return res.status(201).send('Vehicle added')
@@ -52,8 +49,6 @@ const addVehicle = async (req: Request, res: Response) => {
       let boat = Vehicle.returnBoat(model, color, year, power, draft)
 
       VehicleArray.unshift({ ...boat })
-
-      //logger.warn(VehicleArray)
 
       const newBoat = VehicleArray.find((el) => el.model === model)
 
@@ -91,19 +86,12 @@ const fetchVehicleByModel = async (req: Request, res: Response) => {
   let { model } = req.params
 
   let allVehicle: IVehicle[] = JSON.parse(JSON.stringify(VehicleArray))
-  //logger.warn(allVehicle)
 
   const foundVehicle = allVehicle.find((el) => el.model === model)
 
   if (!foundVehicle) return res.status(404).end()
   try {
-    let data: TGenericVehicle = {
-      model: foundVehicle.model,
-      color: foundVehicle.color,
-      year: foundVehicle.year,
-      power: foundVehicle.power,
-    }
-    return res.status(200).json(data)
+    return res.status(200).json(foundVehicle)
   } catch (err) {
     if (err instanceof Error) {
 
