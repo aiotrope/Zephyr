@@ -1,0 +1,61 @@
+{
+  "name": "zephyr",
+  "version": "1.0.0",
+  "description": "Seventh weekly exercise.",
+  "main": "dist/index.js",
+  "scripts": {
+    "transpile": "rm -rf dist/ && npx tsc",
+    "build": "npm run transpile",
+    "start": "NODE_ENV=development npm run build && node ./dist/index.js",
+    "dev": "NODE_ENV=development npx ts-node-dev ./src/index.ts",
+    "linting": "eslint --ignore-path .eslintignore './src/**/*.{ts,js}'",
+    "lint": "npm run linting -- --fix",
+    "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ts|json)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiotrope/zephyr.git"
+  },
+  "author": "aiotrope",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/aiotrope/zephyr/issues"
+  },
+  "homepage": "https://github.com/aiotrope/zephyr#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "sanitize": "^2.1.2",
+    "winston": "^3.9.0",
+    "zod": "^3.21.4",
+    "zod-validation-error": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
+    "@types/ejs": "^3.1.2",
+    "@types/express": "^4.17.17",
+    "@types/http-errors": "^2.0.1",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^18.16.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  },
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
+  }
+}
