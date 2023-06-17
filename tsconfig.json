@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2016",                                 
-    "module": "commonjs",                               
+    "target": "es2016",
+    "module": "commonjs",
     "rootDir": "./src",
-    "outDir": "./build",                                
-    "moduleResolution": "node",                       
-    "baseUrl": "./",                                
-    "types": [
-      "node"
-    ],
+    "outDir": "./build",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "types": ["node"],
     "sourceMap": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
@@ -16,11 +14,11 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,            
+    "noFallthroughCasesInSwitch": true,
     "strict": true,
     "alwaysStrict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true                                
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": [

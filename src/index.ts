@@ -25,9 +25,9 @@ app.use(cors())
 
 app.use(express.static(path.join(__dirname, '../public')))
 
-//app.use(express.static('build'))
-
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 app.use(require('sanitize').middleware)
+/* eslint-enable-next-line @typescript-eslint/no-var-requires */
 
 app.use(middlewares.morganMiddleware)
 

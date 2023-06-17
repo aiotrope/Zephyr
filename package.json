@@ -6,7 +6,7 @@
   "scripts": {
     "transpile": "rm -rf build/ && npx tsc",
     "build": "npm run transpile",
-    "start": "NODE_ENV=production npm run build && node ./build/index.js",
+    "start": "NODE_ENV=production node ./build/index.js",
     "dev": "NODE_ENV=development npx ts-node-dev ./src/index.ts",
     "linting": "eslint --ignore-path .eslintignore './src/**/*.{ts,js}'",
     "lint": "npm run linting -- --fix",

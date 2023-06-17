@@ -93,7 +93,6 @@ class Vehicle {
 
     return _defaultVehicle
   }
-
 }
 
 export { Vehicle, IVehicle }

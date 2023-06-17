@@ -2,8 +2,8 @@ import { Request, Response } from 'express'
 import axios from 'axios'
 
 import config from '../utils/config'
-import logger from '../utils/logger'
 import { IVehicle, Vehicle } from '../types/index'
+//import logger from '../utils/logger'
 
 let VehicleArray: IVehicle[] = []
 
@@ -14,7 +14,7 @@ const helloWorld = (_req: Request, res: Response) => {
     res.status(200).json(greeting)
   } catch (err) {
     if (err instanceof Error) {
-      logger.error(err.message)
+      //logger.error(err.message)
       res.status(400).json({ error: err.message })
     }
   }
@@ -44,7 +44,7 @@ const addVehicle = async (req: Request, res: Response) => {
 
       VehicleArray.unshift({ ...car })
 
-      logger.warn(VehicleArray)
+      //logger.warn(VehicleArray)
 
       const newCar = VehicleArray.find((el) => el.model === model)
 
@@ -54,7 +54,8 @@ const addVehicle = async (req: Request, res: Response) => {
 
       VehicleArray.unshift({ ...boat })
 
-      logger.warn(VehicleArray)
+      //logger.warn(VehicleArray)
+
       const newBoat = VehicleArray.find((el) => el.model === model)
 
       if (newBoat) return res.status(201).send('Vehicle added')
@@ -63,7 +64,7 @@ const addVehicle = async (req: Request, res: Response) => {
 
       VehicleArray.unshift({ ...plane })
 
-      logger.warn(VehicleArray)
+      //logger.warn(VehicleArray)
 
       const newPlane = VehicleArray.find((el) => el.model === model)
 
@@ -78,16 +79,15 @@ const addVehicle = async (req: Request, res: Response) => {
 
       VehicleArray.unshift({ ...defaultVehicle })
 
-      logger.warn(VehicleArray)
+      // logger.warn(VehicleArray)
 
       const newDefault = VehicleArray.find((el) => el.model === model)
 
-      if (newDefault)
-        return res.status(201).send('Vehicle added')
+      if (newDefault) return res.status(201).send('Vehicle added')
     }
   } catch (err) {
     if (err instanceof Error) {
-      logger.error(err.message)
+      //logger.error(err.message)
       res.status(400).json({ error: err.message })
     }
   }
@@ -97,7 +97,8 @@ const fetchVehicleByModel = async (req: Request, res: Response) => {
   let { model } = req.params
 
   let allVehicle: IVehicle[] = JSON.parse(JSON.stringify(VehicleArray))
-  logger.warn(allVehicle)
+  //logger.warn(allVehicle)
+
   const foundVehicle = allVehicle.find((el) => el.model === model)
 
   if (!foundVehicle) return res.status(404).end()
@@ -105,7 +106,8 @@ const fetchVehicleByModel = async (req: Request, res: Response) => {
     return res.status(200).json(foundVehicle)
   } catch (err) {
     if (err instanceof Error) {
-      logger.error(err.message)
+      //logger.error(err.message)
+
       res.status(400).json({ error: err.message })
     }
   }
