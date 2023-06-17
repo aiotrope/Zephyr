@@ -3,7 +3,7 @@
     "target": "es2016",                                 
     "module": "commonjs",                               
     "rootDir": "./src",
-    "outDir": "./dist",                                
+    "outDir": "./build",                                
     "moduleResolution": "node",                       
     "baseUrl": "./",                                
     "types": [
@@ -18,12 +18,14 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,            
     "strict": true,
+    "alwaysStrict": true,
     "noImplicitAny": true,
     "skipLibCheck": true                                
   },
   "include": ["src/**/*"],
   "exclude": [
     "node_modules",
+    "build/**/*",
     "src/test",
     "**/*.spec.ts",
     "**/*.test.ts",

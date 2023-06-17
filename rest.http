@@ -1,0 +1,52 @@
+### add car
+POST http://localhost:8080/vehicle/add
+Content-Type: application/json
+
+{
+   "model": "Ford1",
+   "color": "Red",
+   "year": 1970,
+   "power": 1500,
+   "bodyType": "Good",
+   "wheelCount": 4
+}
+
+### add plane
+POST http://localhost:8080/vehicle/add
+Content-Type: application/json
+
+{
+   "model": "Plane2",
+   "color": "Red",
+   "year": 1988,
+   "power": 200,
+   "wingSpan": 4555
+}
+
+### add boat
+POST http://localhost:8080/vehicle/add
+Content-Type: application/json
+
+{
+   "model": "Booat1",
+   "color": "Black",
+   "year": 2023,
+   "power": 3000,
+   "draft": 589
+}
+
+
+### add default
+POST http://localhost:8080/vehicle/add
+Content-Type: application/json
+
+{
+   "model": "Default Car",
+   "color": "Gold",
+   "year": 2000,
+   "power": 7555
+}
+
+
+### hello
+GET http://localhost:8080/hello

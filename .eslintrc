@@ -14,7 +14,7 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-var-requires": "off",
+    "no-unused-vars": "off",
     "no-case-declarations": "off",
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
@@ -24,6 +24,7 @@
     "no-trailing-spaces": "error",
     "object-curly-spacing": ["error", "always"],
     "arrow-spacing": ["error", { "before": true, "after": true }],
-    "no-console": 0
+    "no-console": 0,
+    "prefer-const": "off"
   }
 }
