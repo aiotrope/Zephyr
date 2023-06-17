@@ -48,7 +48,7 @@ const addVehicle = async (req: Request, res: Response) => {
 
       const newCar = VehicleArray.find((el) => el.model === model)
 
-      if (newCar) return res.status(201).json({ message: Vehicle.message() })
+      if (newCar) return res.status(201).send('Vehicle added')
     } else if (draft) {
       let boat = Vehicle.returnBoat(model, color, year, power, draft)
 
@@ -57,7 +57,7 @@ const addVehicle = async (req: Request, res: Response) => {
       logger.warn(VehicleArray)
       const newBoat = VehicleArray.find((el) => el.model === model)
 
-      if (newBoat) return res.status(201).json({ message: Vehicle.message() })
+      if (newBoat) return res.status(201).send('Vehicle added')
     } else if (wingSpan) {
       let plane = Vehicle.returnPlane(model, color, year, power, wingSpan)
 
@@ -67,7 +67,7 @@ const addVehicle = async (req: Request, res: Response) => {
 
       const newPlane = VehicleArray.find((el) => el.model === model)
 
-      if (newPlane) return res.status(201).json({ message: Vehicle.message() })
+      if (newPlane) return res.status(201).send('Vehicle added')
     } else {
       let defaultVehicle = Vehicle.returnDefaultVehicle(
         model,
@@ -83,8 +83,26 @@ const addVehicle = async (req: Request, res: Response) => {
       const newDefault = VehicleArray.find((el) => el.model === model)
 
       if (newDefault)
-        return res.status(201).json({ message: Vehicle.message() })
+        return res.status(201).send('Vehicle added')
     }
+  } catch (err) {
+    if (err instanceof Error) {
+      logger.error(err.message)
+      res.status(400).json({ error: err.message })
+    }
+  }
+}
+
+const fetchVehicleByModel = async (req: Request, res: Response) => {
+  let { model } = req.params
+
+  let allVehicle: IVehicle[] = JSON.parse(JSON.stringify(VehicleArray))
+  logger.warn(allVehicle)
+  const foundVehicle = allVehicle.find((el) => el.model === model)
+
+  if (!foundVehicle) return res.status(404).end()
+  try {
+    return res.status(200).json(foundVehicle)
   } catch (err) {
     if (err instanceof Error) {
       logger.error(err.message)
@@ -97,4 +115,5 @@ export default {
   indexPage,
   helloWorld,
   addVehicle,
+  fetchVehicleByModel,
 }

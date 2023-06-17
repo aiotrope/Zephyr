@@ -28,7 +28,7 @@ POST http://localhost:8080/vehicle/add
 Content-Type: application/json
 
 {
-   "model": "Booat1",
+   "model": "Boat1",
    "color": "Black",
    "year": 2023,
    "power": 3000,
@@ -50,3 +50,9 @@ Content-Type: application/json
 
 ### hello
 GET http://localhost:8080/hello
+
+### find by model
+GET http://localhost:8080/vehicle/search/Ford1
+
+
+

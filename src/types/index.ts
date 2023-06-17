@@ -27,7 +27,6 @@ class Vehicle {
   public wheelCount!: number
   public draft!: number
   public wingSpan!: number
-  public msg = 'Vehicle added'
 
   public static returnCar(
     model: string,
@@ -95,9 +94,6 @@ class Vehicle {
     return _defaultVehicle
   }
 
-  static message() {
-    return 'Vehicle added'
-  }
 }
 
 export { Vehicle, IVehicle }
