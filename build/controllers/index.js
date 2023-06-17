@@ -13,7 +13,6 @@ const helloWorld = (_req, res) => {
     }
     catch (err) {
         if (err instanceof Error) {
-            //logger.error(err.message)
             res.status(400).json({ error: err.message });
         }
     }
@@ -45,7 +44,6 @@ const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, funct
         else if (wingSpan) {
             let plane = index_1.Vehicle.returnPlane(model, color, year, power, wingSpan);
             VehicleArray.unshift(Object.assign({}, plane));
-            //logger.warn(VehicleArray)
             const newPlane = VehicleArray.find((el) => el.model === model);
             if (newPlane)
                 return res.status(201).send('Vehicle added');
@@ -53,7 +51,6 @@ const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, funct
         else {
             let defaultVehicle = index_1.Vehicle.returnDefaultVehicle(model, color, year, power);
             VehicleArray.unshift(Object.assign({}, defaultVehicle));
-            // logger.warn(VehicleArray)
             const newDefault = VehicleArray.find((el) => el.model === model);
             if (newDefault)
                 return res.status(201).send('Vehicle added');
@@ -61,7 +58,6 @@ const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, funct
     }
     catch (err) {
         if (err instanceof Error) {
-            //logger.error(err.message)
             res.status(400).json({ error: err.message });
         }
     }
@@ -74,11 +70,16 @@ const fetchVehicleByModel = (req, res) => tslib_1.__awaiter(void 0, void 0, void
     if (!foundVehicle)
         return res.status(404).end();
     try {
-        return res.status(200).json(foundVehicle);
+        let data = {
+            model: foundVehicle.model,
+            color: foundVehicle.color,
+            year: foundVehicle.year,
+            power: foundVehicle.power,
+        };
+        return res.status(200).json(data);
     }
     catch (err) {
         if (err instanceof Error) {
-            //logger.error(err.message)
             res.status(400).json({ error: err.message });
         }
     }

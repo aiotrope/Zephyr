@@ -18,6 +18,11 @@ interface IVehicle extends TCar, TBoat, TPlane {
   power: number
 }
 
+type TGenericVehicle = Omit<
+  IVehicle,
+  'bodyType' | 'wheelCount' | 'draft' | 'wingSpan'
+>
+
 class Vehicle {
   public model!: string
   public color!: string
@@ -95,4 +100,4 @@ class Vehicle {
   }
 }
 
-export { Vehicle, IVehicle }
+export { Vehicle, IVehicle, TGenericVehicle }
