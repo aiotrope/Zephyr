@@ -19,7 +19,6 @@ const helloWorld = (_req, res) => {
 };
 const indexPage = (_req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     const response = yield axios_1.default.get(`${config_1.default.base_url}/hello`);
-    //logger.warn(response.data)
     res.render('index', { title: 'Zephyr', response: response.data });
 });
 const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
@@ -28,7 +27,6 @@ const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, funct
         if (bodyType && wheelCount) {
             let car = index_1.Vehicle.returnCar(model, color, year, power, bodyType, wheelCount);
             VehicleArray.unshift(Object.assign({}, car));
-            //logger.warn(VehicleArray)
             const newCar = VehicleArray.find((el) => el.model === model);
             if (newCar)
                 return res.status(201).send('Vehicle added');
@@ -36,7 +34,6 @@ const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, funct
         else if (draft) {
             let boat = index_1.Vehicle.returnBoat(model, color, year, power, draft);
             VehicleArray.unshift(Object.assign({}, boat));
-            //logger.warn(VehicleArray)
             const newBoat = VehicleArray.find((el) => el.model === model);
             if (newBoat)
                 return res.status(201).send('Vehicle added');
@@ -65,18 +62,11 @@ const addVehicle = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, funct
 const fetchVehicleByModel = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     let { model } = req.params;
     let allVehicle = JSON.parse(JSON.stringify(VehicleArray));
-    //logger.warn(allVehicle)
     const foundVehicle = allVehicle.find((el) => el.model === model);
     if (!foundVehicle)
         return res.status(404).end();
     try {
-        let data = {
-            model: foundVehicle.model,
-            color: foundVehicle.color,
-            year: foundVehicle.year,
-            power: foundVehicle.power,
-        };
-        return res.status(200).json(data);
+        return res.status(200).json(foundVehicle);
     }
     catch (err) {
         if (err instanceof Error) {
